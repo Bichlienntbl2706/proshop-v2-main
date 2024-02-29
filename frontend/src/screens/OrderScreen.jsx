@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap';
+import { Row, Col, ListGroup, Image, Card, Button, Container } from 'react-bootstrap';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -106,7 +106,7 @@ const OrderScreen = () => {
   ) : error ? (
     <Message variant='danger'>{error.data.message}</Message>
   ) : (
-    <>
+    <Container>
       <h1>Order {order._id}</h1>
       <Row>
         <Col md={8}>
@@ -259,7 +259,7 @@ const OrderScreen = () => {
           </Card>
         </Col>
       </Row>
-    </>
+    </Container>
   );
 };
 

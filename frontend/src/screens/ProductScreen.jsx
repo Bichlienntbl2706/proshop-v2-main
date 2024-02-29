@@ -10,6 +10,7 @@ import {
   Card,
   Button,
   Form,
+  Container,
 } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import {
@@ -66,7 +67,7 @@ const ProductScreen = () => {
   };
 
   return (
-    <>
+    <Container>
       <Link className='btn btn-light my-3' to='/'>
         Go Back
       </Link>
@@ -223,7 +224,7 @@ const ProductScreen = () => {
           </Row>
         </>
       )}
-    </>
+    </Container>
   );
 };
 

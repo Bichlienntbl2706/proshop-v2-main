@@ -9,6 +9,8 @@ import { useLoginMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import { toast } from 'react-toastify';
 
+import bglogin from "../assets/images/bg-login.png";
+
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -42,10 +44,11 @@ const LoginScreen = () => {
   };
 
   return (
+  <div className="d-flex flex-row position-relative">
+  <div className="position-absolute top-50 start-0 translate-middle-y col-md-8 col-12 ">
     <FormContainer>
-      <h1>Sign In</h1>
-
-      <Form onSubmit={submitHandler}>
+      <h1 className='text-center'>Sign In</h1>
+      <Form onSubmit={submitHandler} className="d-grid gap-2">
         <Form.Group className='my-2' controlId='email'>
           <Form.Label>Email Address</Form.Label>
           <Form.Control
@@ -82,6 +85,11 @@ const LoginScreen = () => {
         </Col>
       </Row>
     </FormContainer>
+  </div>
+
+  <img src={bglogin} alt="img" className='w-100' style={{height: "700px", backgroundSize: "cover"}}/>
+</div>
+
   );
 };
 

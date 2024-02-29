@@ -8,6 +8,7 @@ import { logout } from '../slices/authSlice';
 import SearchBox from './SearchBox';
 import logo from '../assets/logo.png';
 import { resetCart } from '../slices/cartSlice';
+import backgroundImage from '../assets/images/header.jpg'
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -22,8 +23,6 @@ const Header = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      // NOTE: here we need to reset cart state for when a user logs out so the next
-      // user doesn't inherit the previous users cart and shipping
       dispatch(resetCart());
       navigate('/login');
     } catch (err) {
@@ -33,20 +32,19 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg='primary' variant='dark' expand='lg' collapseOnSelect>
+      <Navbar variant='dark' expand='lg' collapseOnSelect className='p-0 shadow bg-body rounded'>
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand>
-              <img src={logo} alt='ProShop' />
-              ProShop
+            <Navbar.Brand className="edit-text-color">
+              <img src={logo} alt='De Pureté' />
             </Navbar.Brand>
           </LinkContainer>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='ms-auto'>
+          <Navbar.Toggle aria-controls='basic-navbar-nav' className="text-black" />
+          <Navbar.Collapse id='basic-navbar-nav' className="text-black">
+            <Nav className='ms-auto text-black'>
               <SearchBox />
               <LinkContainer to='/cart'>
-                <Nav.Link>
+                <Nav.Link className="text-black">
                   <FaShoppingCart /> Cart
                   {cartItems.length > 0 && (
                     <Badge pill bg='success' style={{ marginLeft: '5px' }}>
@@ -57,7 +55,7 @@ const Header = () => {
               </LinkContainer>
               {userInfo ? (
                 <>
-                  <NavDropdown title={userInfo.name} id='username'>
+                  <NavDropdown title={userInfo.name} id='username' className="text-black">
                     <LinkContainer to='/profile'>
                       <NavDropdown.Item>Profile</NavDropdown.Item>
                     </LinkContainer>
@@ -68,7 +66,7 @@ const Header = () => {
                 </>
               ) : (
                 <LinkContainer to='/login'>
-                  <Nav.Link>
+                  <Nav.Link className='text-black'>
                     <FaUser /> Sign In
                   </Nav.Link>
                 </LinkContainer>
@@ -76,7 +74,7 @@ const Header = () => {
 
               {/* Admin Links */}
               {userInfo && userInfo.isAdmin && (
-                <NavDropdown title='Admin' id='adminmenu'>
+                <NavDropdown title='Admin' id='adminmenu' className='text-black'>
                   <LinkContainer to='/admin/productlist'>
                     <NavDropdown.Item>Products</NavDropdown.Item>
                   </LinkContainer>

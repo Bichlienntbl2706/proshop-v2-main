@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Form, Button, Row, Col } from 'react-bootstrap';
+import { Table, Form, Button, Row, Col, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaTimes, FaCheck } from 'react-icons/fa';
@@ -53,7 +53,8 @@ const ProfileScreen = () => {
   };
 
   return (
-    <Row>
+    <Container>
+      <Row>
       <Col md={3}>
         <h2>User Profile</h2>
 
@@ -160,6 +161,7 @@ const ProfileScreen = () => {
         )}
       </Col>
     </Row>
+    </Container>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Container } from 'react-bootstrap';
 import { FaTrash, FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
@@ -27,7 +27,7 @@ const UserListScreen = () => {
   };
 
   return (
-    <>
+    <Container>
       <h1>Users</h1>
       {isLoading ? (
         <Loader />
@@ -87,7 +87,7 @@ const UserListScreen = () => {
           </tbody>
         </Table>
       )}
-    </>
+    </Container>
   );
 };
 

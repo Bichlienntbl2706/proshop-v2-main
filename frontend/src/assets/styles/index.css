@@ -1,7 +1,20 @@
+body{
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
 main {
   min-height: 80vh;
 }
 
+.fix-product-item {
+  padding-left: 3%;
+  padding-right: 1%;
+  width: 100%;
+  box-sizing: border-box;
+}
 .rating span {
   margin: 0.1rem;
 }
@@ -50,4 +63,14 @@ table th {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
+}
+.edit-text-color img{
+    height:70px;
+}
+#username{
+  color: #000;
+}
+
+.text-black {
+  color: black !important; /* Sử dụng !important để đảm bảo áp dụng màu */
 }

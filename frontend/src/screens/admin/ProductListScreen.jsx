@@ -1,5 +1,5 @@
 import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button, Row, Col } from 'react-bootstrap';
+import { Table, Button, Row, Col, Container } from 'react-bootstrap';
 import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import Message from '../../components/Message';
@@ -48,7 +48,7 @@ const ProductListScreen = () => {
   };
 
   return (
-    <>
+    <Container>
       <Row className='align-items-center'>
         <Col>
           <h1>Products</h1>
@@ -108,7 +108,7 @@ const ProductListScreen = () => {
           <Paginate pages={data.pages} page={data.page} isAdmin={true} />
         </>
       )}
-    </>
+    </Container>
   );
 };
 
