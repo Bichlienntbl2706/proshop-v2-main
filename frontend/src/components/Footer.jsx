@@ -1,6 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+import icon_shopee from '../assets/images/icon-shopee.jpg'
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -44,7 +45,7 @@ const Footer = () => {
             <h6 className="text-uppercase mb-4 font-weight-bold">Follow us</h6>
 
             <a
-               className="btn btn-primary btn-floating m-1"
+               className="btn btn-primary btn-floating"
                style={{backgroundColor: "#3b5998"}}
                href="https://www.facebook.com/tinhdaudepurete"
                role="button">
@@ -59,6 +60,7 @@ const Footer = () => {
                >
                 <i class="bi bi-instagram"></i>
             </a>
+
             <a
                className="btn btn-primary btn-floating m-1"
                style={{backgroundColor: ""}}
@@ -67,6 +69,18 @@ const Footer = () => {
                >
                 <i class="bi bi-tiktok"></i>
             </a>
+
+            {/* <a
+               className="btn btn-primary btn-floating m-1"
+               style={{backgroundColor: ""}}
+               href="https://shopee.vn/"
+               role="button"
+               > */}
+               <a href="https://shopee.vn/">
+
+                <img src={icon_shopee} alt='shopee' className="" style={{height:"45px", borderRadius:"10%", border:"solid 1px #333"}}/>
+               </a>
+            {/* </a> */}
 
           </div>
 

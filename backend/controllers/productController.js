@@ -136,7 +136,7 @@ const createProductReview = asyncHandler(async (req, res) => {
       throw new Error('Product already reviewed');
     }
 
-    const review = {
+    let review = {
       name: req.user.name,
       rating: Number(rating),
       comment,
@@ -152,6 +152,14 @@ const createProductReview = asyncHandler(async (req, res) => {
       product.reviews.length;
 
     await product.save();
+
+    // Clear the input fields after successfully adding a review
+    console.log('157')
+    review = {
+      rating: 0, // Assuming you want to clear the rating as well
+      comment: "",
+    };
+    console.log('162')
     res.status(201).json({ message: 'Review added' });
   } else {
     res.status(404);
