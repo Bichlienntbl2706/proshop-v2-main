@@ -21,6 +21,7 @@ const ProductEditScreen = () => {
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('');
+  const [description_vn, setDescription_vn] = useState('');
 
   const {
     data: product,
@@ -48,6 +49,7 @@ const ProductEditScreen = () => {
         brand,
         category,
         description,
+        description_vn,
         countInStock,
       }).unwrap(); // NOTE: here we need to unwrap the Promise to catch any rejection in our catch block
       toast.success('Product updated');
@@ -67,6 +69,7 @@ const ProductEditScreen = () => {
       setCategory(product.category);
       setCountInStock(product.countInStock);
       setDescription(product.description);
+      setDescription_vn(product.description_vn);
     }
   }, [product]);
 
@@ -169,6 +172,16 @@ const ProductEditScreen = () => {
                 placeholder='Enter description'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='description_vn'>
+              <Form.Label>Description_vn</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter description_vn'
+                value={description_vn}
+                onChange={(e) => setDescription_vn(e.target.value)}
               ></Form.Control>
             </Form.Group>
 

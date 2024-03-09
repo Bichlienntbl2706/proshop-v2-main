@@ -33,7 +33,7 @@ const PlaceOrderScreen = () => {
         paymentMethod: cart.paymentMethod,
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
-        taxPrice: cart.taxPrice,
+        // taxPrice: cart.taxPrice,
         totalPrice: cart.totalPrice,
       }).unwrap();
       dispatch(clearCartItems());
@@ -88,8 +88,8 @@ const PlaceOrderScreen = () => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = $
-                          {(item.qty * (item.price * 100)) / 100}
+                          {item.qty} x {item.price}.000 = 
+                          {(item.qty * (item.price * 100)) / 100}.000
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -108,25 +108,25 @@ const PlaceOrderScreen = () => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
-                  <Col>${cart.itemsPrice}</Col>
+                  <Col>{cart.itemsPrice}0 <small>VND</small></Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Shipping</Col>
-                  <Col>${cart.shippingPrice}</Col>
+                  <Col>{cart.shippingPrice}0 <small>VND</small></Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              {/* <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${cart.taxPrice}</Col>
+                  <Col>{cart.taxPrice}0 <small>VND</small></Col>
                 </Row>
-              </ListGroup.Item>
+              </ListGroup.Item> */}
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${cart.totalPrice}</Col>
+                  <Col>{cart.totalPrice}0 <small>VND</small></Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>

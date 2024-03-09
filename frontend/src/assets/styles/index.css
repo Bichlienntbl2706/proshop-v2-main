@@ -74,3 +74,7 @@ table th {
 .text-black {
   color: black !important; /* Sử dụng !important để đảm bảo áp dụng màu */
 }
+
+#adminmenu{
+  color: #000 !important;
+}

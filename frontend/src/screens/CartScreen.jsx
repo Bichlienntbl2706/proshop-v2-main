@@ -34,10 +34,14 @@ const CartScreen = () => {
   const checkoutHandler = () => {
     navigate('/login?redirect=/shipping');
   };
+  //  navigate = useNavigate();
 
+  const goBack = () => {
+    navigate(-1);
+  };
   return (
     <Container>
-          <Link className='btn btn-light my-3' to='/'>Go Back</Link>
+          <Link className='btn btn-light my-3' onClick={goBack}>Go Back</Link>
       <Row>
         <Col md={8}>
           {/* <Link to='/' className='btn btn-primary fs-7'>Continue Shopping</Link> */}
@@ -57,7 +61,7 @@ const CartScreen = () => {
                     <Col md={3}>
                       <Link to={`/product/${item._id}`} className='text-decoration-none fs-5'>{item.name}</Link>
                     </Col>
-                    <Col md={2}>${item.price}</Col>
+                    <Col md={2}>{item.price}.000 <small>VND</small></Col>
                     <Col md={2}>
                       <Form.Control
                         as='select'
@@ -96,10 +100,10 @@ const CartScreen = () => {
                   Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                   items
                 </h2>
-                $
+                
                 {cartItems
                   .reduce((acc, item) => acc + item.qty * item.price, 0)
-                  .toFixed(2)}
+                  .toFixed(2)}0 <small>VND</small>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
+import { Link, useParams  } from 'react-router-dom';
 import { Row, Col, ListGroup, Image, Card, Button, Container } from 'react-bootstrap';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import { useSelector } from 'react-redux';
@@ -100,13 +101,18 @@ const OrderScreen = () => {
     await deliverOrder(orderId);
     refetch();
   };
+  const navigate = useNavigate();
 
+  const goBack = () => {
+    navigate(-1);
+  };
   return isLoading ? (
     <Loader />
   ) : error ? (
     <Message variant='danger'>{error.data.message}</Message>
   ) : (
     <Container>
+      <Link className='btn btn-light my-3' onClick={goBack} >Go Back</Link>
       <h1>Order {order._id}</h1>
       <Row>
         <Col md={8}>
@@ -148,7 +154,7 @@ const OrderScreen = () => {
               )}
             </ListGroup.Item>
 
-            <ListGroup.Item>
+            <ListGroup.Item className="m-1">
               <h2>Order Items</h2>
               {order.orderItems.length === 0 ? (
                 <Message>Order is empty</Message>
@@ -171,7 +177,7 @@ const OrderScreen = () => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                          {item.qty} x {item.price}.000 = {item.qty * item.price}.000
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -190,25 +196,25 @@ const OrderScreen = () => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
-                  <Col>${order.itemsPrice}</Col>
+                  <Col>{order.itemsPrice}.000 <small>VND</small></Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Shipping</Col>
-                  <Col>${order.shippingPrice}</Col>
+                  <Col>{order.shippingPrice}.000 <small>VND</small></Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              {/* <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${order.taxPrice}</Col>
+                  <Col>{order.taxPrice}0</Col>
                 </Row>
-              </ListGroup.Item>
+              </ListGroup.Item> */}
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${order.totalPrice}</Col>
+                  <Col>{order.totalPrice}.000 <small>VND</small></Col>
                 </Row>
               </ListGroup.Item>
               {!order.isPaid && (

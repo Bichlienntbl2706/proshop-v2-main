@@ -1,15 +1,21 @@
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button, Container } from 'react-bootstrap';
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes, FaCheck } from 'react-icons/fa';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import { useGetOrdersQuery } from '../../slices/ordersApiSlice';
+import { Link, useNavigate } from 'react-router-dom';
 
 const OrderListScreen = () => {
   const { data: orders, isLoading, error } = useGetOrdersQuery();
+  const navigate = useNavigate();
 
+  const goBack = () => {
+    navigate(-1);
+  };
   return (
     <Container>
+      <Link className='btn btn-light my-3' onClick={goBack}>Go Back</Link>
       <h1>Orders</h1>
       {isLoading ? (
         <Loader />
@@ -35,18 +41,20 @@ const OrderListScreen = () => {
               <tr key={order._id}>
                 <td>{order._id}</td>
                 <td>{order.user && order.user.name}</td>
-                <td>{order.createdAt.substring(0, 10)}</td>
-                <td>${order.totalPrice}</td>
+                <td>{order.createdAt && order.createdAt.substring(0, 10)}</td>
+                <td>{order.totalPrice}.000 <small>VND</small></td>
                 <td>
                   {order.isPaid ? (
-                    order.paidAt.substring(0, 10)
+                    //  order.paidAt && order.paidAt.substring(0, 10)
+                     <FaCheck style={{ color: 'green' }} />
                   ) : (
                     <FaTimes style={{ color: 'red' }} />
                   )}
                 </td>
                 <td>
                   {order.isDelivered ? (
-                    order.deliveredAt.substring(0, 10)
+                    order.deliveredAt && order.deliveredAt.substring(0, 10)
+                    // <FaCheck style={{ color: 'green' }} />
                   ) : (
                     <FaTimes style={{ color: 'red' }} />
                   )}

@@ -9,6 +9,7 @@ import {
   useGetUsersQuery,
 } from '../../slices/usersApiSlice';
 import { toast } from 'react-toastify';
+import {Link,useNavigate } from "react-router-dom"
 
 const UserListScreen = () => {
   const { data: users, refetch, isLoading, error } = useGetUsersQuery();
@@ -25,9 +26,14 @@ const UserListScreen = () => {
       }
     }
   };
+  const navigate = useNavigate();
 
+  const goBack = () => {
+    navigate(-1);
+  };
   return (
     <Container>
+      <Link className='btn btn-light my-3' onClick={goBack}>Go Back</Link>
       <h1>Users</h1>
       {isLoading ? (
         <Loader />

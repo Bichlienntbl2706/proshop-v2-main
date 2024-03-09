@@ -10,6 +10,7 @@ import Loader from '../components/Loader';
 import { useProfileMutation } from '../slices/usersApiSlice';
 import { useGetMyOrdersQuery } from '../slices/ordersApiSlice';
 import { setCredentials } from '../slices/authSlice';
+import {Link} from 'react-router-dom'
 
 const ProfileScreen = () => {
   const [name, setName] = useState('');
@@ -54,6 +55,7 @@ const ProfileScreen = () => {
 
   return (
     <Container>
+      <Link className='btn btn-light my-3' to='/'>Go Back</Link>
       <Row>
       <Col md={3}>
         <h2>User Profile</h2>
@@ -130,7 +132,7 @@ const ProfileScreen = () => {
                 <tr key={order._id}>
                   <td>{order._id}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>
-                  <td>{order.totalPrice}</td>
+                  <td>{order.totalPrice}.000 <small>VND</small></td>
                   <td>
                     {order.isPaid ? (
                      //order.paidAt.substring(0, 10)

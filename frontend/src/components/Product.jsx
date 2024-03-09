@@ -12,14 +12,14 @@ const Product = ({ product }) => {
 
           <Card.Body>
             <Link className=" text-decoration-none " to={`/product/${product._id}`}>
-              <Card.Title as='div' className='product-title text-center p-0' style={{fontWeight:"600", fontSize:"20px"}}>
+              <Card.Title as='div' className='product-title text-center p-0 m-0' style={{fontWeight:"600", fontSize:"20px"}}>
                 {product.name}
               </Card.Title>
             </Link>
 
             <div className='d-flex justify-content-center'>
 
-              <Card.Text as='h2' className='mt-2'>$ {product.price}</Card.Text>
+              <Card.Text as='h5' className='mt-2'>{product.price}.000 <small>VND</small></Card.Text>
 
                 <Card.Text as='div' style={{paddingLeft:"30px"}}>
                   <Rating value={product.rating}/>

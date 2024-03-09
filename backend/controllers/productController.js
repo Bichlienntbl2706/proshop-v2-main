@@ -57,6 +57,7 @@ const createProduct = asyncHandler(async (req, res) => {
     countInStock: req.body.countInStock,
     numReviews: req.body.numReviews,
     description: req.body.description,
+    description_vn: req.body.description_vn,
   });
 
   const createdProduct = await product.save();
@@ -81,7 +82,7 @@ const createProduct = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
-  const { name, price, description, image, brand, category, countInStock } =
+  const { name, price, description,description_vn, image, brand, category, countInStock } =
     req.body;
 
   const product = await Product.findById(req.params.id);
@@ -90,6 +91,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.name = name;
     product.price = price;
     product.description = description;
+    product.description_vn = description_vn;
     product.image = image;
     product.brand = brand;
     product.category = category;
@@ -154,12 +156,12 @@ const createProductReview = asyncHandler(async (req, res) => {
     await product.save();
 
     // Clear the input fields after successfully adding a review
-    console.log('157')
-    review = {
-      rating: 0, // Assuming you want to clear the rating as well
-      comment: "",
-    };
-    console.log('162')
+    // console.log('157')
+    // review = {
+    //   rating: 0, // Assuming you want to clear the rating as well
+    //   comment: "",
+    // };
+    // console.log('162')
     res.status(201).json({ message: 'Review added' });
   } else {
     res.status(404);

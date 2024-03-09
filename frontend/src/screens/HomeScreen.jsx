@@ -37,7 +37,7 @@ const HomeScreen = () => {
       ) : (
         <>
           <Meta />
-          <Container className='pt-2'>
+          <Container className='pt-2 pb-4'>
             <h1 className='text-center p-2'>Latest Products</h1>
               <Row className="fix-product-item">
                 {data.products.map((product) => (

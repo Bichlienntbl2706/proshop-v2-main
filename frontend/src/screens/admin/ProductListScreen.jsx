@@ -1,7 +1,7 @@
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button, Row, Col, Container } from 'react-bootstrap';
 import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import Paginate from '../../components/Paginate';
@@ -46,9 +46,14 @@ const ProductListScreen = () => {
       }
     }
   };
+  const navigate = useNavigate();
 
+  const goBack = () => {
+    navigate(-1);
+  };
   return (
     <Container>
+      <Link className='btn btn-light my-3'onClick={goBack}>Go Back</Link>
       <Row className='align-items-center'>
         <Col>
           <h1>Products</h1>
@@ -84,7 +89,7 @@ const ProductListScreen = () => {
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
-                  <td>${product.price}</td>
+                  <td>{product.price}.000 <small>VND</small></td>
                   <td>{product.category}</td>
                   <td>{product.brand}</td>
                   <td>

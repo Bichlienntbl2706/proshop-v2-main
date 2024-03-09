@@ -6,7 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className='shadow p-3 bg-body rounded'>
+    <footer className='mt-4' style={{boxShadow:"10px 10px 10px 5px rgba(0, 0, 0, 0.75)"}}>
       <Container>
         <Row>
           <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">

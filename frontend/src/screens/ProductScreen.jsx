@@ -66,9 +66,12 @@ const ProductScreen = () => {
     }
   };
 
+  const goBack = () => {
+    navigate(-1);
+  };
   return (
     <Container>
-      <Link className='btn btn-light my-3' to='/'>
+      <Link className='btn btn-light my-3' onClick={goBack}>
         Go Back
       </Link>
       {isLoading ? (
@@ -95,9 +98,12 @@ const ProductScreen = () => {
                     text={`${product.numReviews} reviews`}
                   />
                 </ListGroup.Item>
-                <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
+                <ListGroup.Item>Price: {product.price}.000 <small>VND</small></ListGroup.Item>
                 <ListGroup.Item>
                   Description: {product.description}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  Mô tả: {product.description_vn}
                 </ListGroup.Item>
               </ListGroup>
             </Col>
@@ -108,7 +114,7 @@ const ProductScreen = () => {
                     <Row>
                       <Col>Price:</Col>
                       <Col>
-                        <strong>${product.price}</strong>
+                        <strong>{product.price}.000 <small>VND</small></strong>
                       </Col>
                     </Row>
                   </ListGroup.Item>
