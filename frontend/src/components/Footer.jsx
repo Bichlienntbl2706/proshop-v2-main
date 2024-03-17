@@ -21,16 +21,16 @@ const Footer = () => {
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
             <h6 className="text-uppercase mb-4 font-weight-bold">Products</h6>
             <p>
-              <a href='/' className="text-decoration-none">Rose Essential Oil</a>
+              <a href='/' className="text-decoration-none">Home Vibe Essential Oil</a>
             </p>
             <p>
-              <a href='/' className="text-decoration-none">Jasmine Essential Oil</a>
+              <a href='/' className="text-decoration-none">The Youth Essential Oil</a>
             </p>
             <p>
-              <a  href='/' className="text-decoration-none">Green Apple Essential Oil</a>
+              <a  href='/' className="text-decoration-none">Junia Essential Oil</a>
             </p>
             <p>
-              <a href='/' className="text-decoration-none">White Tea Essential Oil</a>
+              <a href='/' className="text-decoration-none">Muse Essential Oil</a>
             </p>
           </div>
 

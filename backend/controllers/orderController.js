@@ -86,46 +86,90 @@ const getOrderById = asyncHandler(async (req, res) => {
 // @desc    Update order to paid
 // @route   PUT /api/orders/:id/pay
 // @access  Private
-const updateOrderToPaid = asyncHandler(async (req, res) => {
-  // NOTE: here we need to verify the payment was made to PayPal before marking
-  // the order as paid
+
+// const updateOrderToPaid = asyncHandler(async (req, res) => {
+//   // NOTE: here we need to verify the payment was made to PayPal before marking
+//   // the order as paid
   
+//   try {
+//     const { verified, value } = await verifyPayPalPayment(req.body.id);
+//     if (!verified) throw new Error('Payment not verified');
+
+//     // check if this transaction has been used before
+//     const isNewTransaction = await checkIfNewTransaction(Order, req.body.id);
+//     if (!isNewTransaction) throw new Error('Transaction has been used before');
+
+//         const order = await Order.findById(req.params.id);
+        
+//         //FIX
+//         if (order) {
+//           // check the correct amount was paid
+//             // const paidCorrectAmount = order.totalPrice.toString() === value;
+//             const paidCorrectAmount = parseFloat(order.totalPrice).toFixed(2) === parseFloat(value).toFixed(2);
+
+//             // console.log(paidCorrectAmount);
+//             console.log('Order Total Price:', order.totalPrice);
+//             console.log('PayPal Value:', value);
+//             console.log('Paid Correct Amount:', paidCorrectAmount);
+//             if (!paidCorrectAmount) throw new Error('Incorrect amount paid');
+
+//             order.isPaid = true;
+//             order.paidAt = Date.now();
+//             order.paymentResult = {
+//               id: req.body.id,
+//               status: req.body.status,
+//               update_time: req.body.update_time,
+//               email_address: req.body.payer.email_address,
+//             };
+//             //FIX
+//             const updatedOrder = await order.save();
+
+//             res.json(updatedOrder);
+//         } 
+//     // else {
+//     //   res.status(404);
+//     //   throw new Error('Order not found');
+//     // }
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: error.message || 'Server Error' });
+//     return;
+//   }
+// });
+const updateOrderToPaid = asyncHandler(async (req, res) => {
   try {
     const { verified, value } = await verifyPayPalPayment(req.body.id);
     if (!verified) throw new Error('Payment not verified');
 
     // check if this transaction has been used before
     const isNewTransaction = await checkIfNewTransaction(Order, req.body.id);
+
     if (!isNewTransaction) throw new Error('Transaction has been used before');
 
-        const order = await Order.findById(req.params.id);
-        
-        //FIX
-        if (order) {
-          // check the correct amount was paid
-            const paidCorrectAmount = order.totalPrice.toString() === value;
-            
-            console.log(paidCorrectAmount);
+    const order = await Order.findById(req.params.id);
 
-            if (!paidCorrectAmount) throw new Error('Incorrect amount paid');
+    if (order) {
+      // check the correct amount was paid
+      console.log('Order Total Price:', order.totalPrice);
+      console.log('PayPal Value:', value);
 
-            order.isPaid = true;
-            order.paidAt = Date.now();
-            order.paymentResult = {
-              id: req.body.id,
-              status: req.body.status,
-              update_time: req.body.update_time,
-              email_address: req.body.payer.email_address,
-            };
-            //FIX
-            const updatedOrder = await order.save();
+      const paidCorrectAmount = parseFloat(order.totalPrice).toFixed(2) === parseFloat(value).toFixed(2);
+      console.log('Paid Correct Amount:', paidCorrectAmount);
 
-            res.json(updatedOrder);
-        } 
-    // else {
-    //   res.status(404);
-    //   throw new Error('Order not found');
-    // }
+      if (!paidCorrectAmount) throw new Error('Incorrect amount paid');
+
+      order.isPaid = true;
+      order.paidAt = Date.now();
+      order.paymentResult = {
+        id: req.body.id,
+        status: req.body.status,
+        update_time: req.body.update_time,
+        email_address: req.body.payer.email_address,
+      };
+
+      const updatedOrder = await order.save();
+      res.json(updatedOrder);
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: error.message || 'Server Error' });
