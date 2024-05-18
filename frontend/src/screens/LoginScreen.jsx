@@ -27,6 +27,7 @@ const LoginScreen = () => {
   const redirect = sp.get('redirect') || '/';
 
   useEffect(() => {
+   
     if (userInfo) {
       navigate(redirect);
     }
@@ -40,7 +41,7 @@ const LoginScreen = () => {
       navigate(redirect);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
-    }
+     }
   };
 
   return (

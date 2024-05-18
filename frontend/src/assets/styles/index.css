@@ -78,3 +78,7 @@ table th {
 #adminmenu{
   color: #000 !important;
 }
+
+.navbar-toggle{
+    background-color: #8d8c89;
+}

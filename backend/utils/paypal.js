@@ -56,17 +56,18 @@ const { PAYPAL_CLIENT_ID, PAYPAL_APP_SECRET, PAYPAL_API_URL } = process.env;
  * @throws {Error} If there's an error in querying the database.
  *
  */
-export async function checkIfNewTransaction(orderModel, paypalTransactionId) {
+export async function checkIfNewTransaction(orderModel, transactionId) {
   try {
-    // Find all documents where Order.paymentResult.id is the same as the id passed paypalTransactionId
+    // Find all documents where Order.paymentResult.id is the same as the id passed transactionId
     const orders = await orderModel.find({
-      'paymentResult.id': paypalTransactionId,
+      'paymentResult.id': transactionId,
     });
 
     // If there are no such orders, then it's a new transaction.
     return orders.length === 0;
   } catch (err) {
     console.error(err);
+    throw new Error('Error checking transaction');
   }
 }
 

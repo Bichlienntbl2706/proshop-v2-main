@@ -8,13 +8,30 @@ const protect = asyncHandler(async (req, res, next) => {
 
   // Read JWT from the 'jwt' cookie
   token = req.cookies.jwt;
-  // token = 'mysecretkey'
 
   if (token) {
     try {
+      // Xác thực token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-      req.user = await User.findById(decoded.userId).select('-password');
+      // Lấy thông tin người dùng từ token
+      const user = await User.findById(decoded.userId).select('-password');
+
+      if (!user) {
+        // Nếu không tìm thấy người dùng, trả về lỗi 401
+        res.status(401);
+        throw new Error('Not authorized, user not found');
+      }
+
+      // Kiểm tra quyền truy cập vào tài nguyên
+      // Ví dụ: kiểm tra quyền truy cập vào các tài nguyên chỉ admin có thể truy cập
+      // if (!user.isAdmin) {
+      //   res.status(403); // 403: Forbidden
+      //   throw new Error('Not authorized, admin access required');
+      // }
+
+      // Gán thông tin người dùng vào request để sử dụng ở các middleware và handlers sau này
+      req.user = user;
 
       next();
     } catch (error) {

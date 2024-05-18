@@ -32,18 +32,18 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar variant='dark' expand='lg' collapseOnSelect className='p-0 shadow bg-body rounded'>
+      <Navbar variant='dark' expand='lg' collapseOnSelect className='p-0 shadow bg-body rounded text-black'>
         <Container>
           <LinkContainer to='/'>
             <Navbar.Brand className="edit-text-color">
               <img src={logo} alt='De Pureté' />
             </Navbar.Brand>
           </LinkContainer>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' className="text-black" />
-          <Navbar.Collapse id='basic-navbar-nav' className="text-black">
+          <Navbar.Toggle aria-controls='basic-navbar-nav' className='btn btn-primary navbar-toggle' />
+          <Navbar.Collapse id='basic-navbar-nav' className="text-black" >
             <Nav className='ms-auto text-black'>
               <SearchBox />
-              <LinkContainer to='/cart'>
+              <LinkContainer to='/cart' className='text-black'>
                 <Nav.Link className="text-black">
                   <FaShoppingCart /> Cart
                   {cartItems.length > 0 && (
