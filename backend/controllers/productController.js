@@ -51,15 +51,15 @@ const getProducts = asyncHandler(async (req, res) => {
       }
     : {};
 
-  console.log("Search Keyword:", req.query.keyword);
-  console.log("Search Query:", keyword);
+  // console.log("Search Keyword:", req.query.keyword);
+  // console.log("Search Query:", keyword);
 
   const count = await Product.countDocuments({ ...keyword });
   const products = await Product.find({ ...keyword })
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
-  console.log("Search Results:", products);
+  // console.log("Search Results:", products);
 
   res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });

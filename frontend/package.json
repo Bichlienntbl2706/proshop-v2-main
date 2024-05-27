@@ -20,6 +20,7 @@
     "crypto-browserify": "^3.12.0",
     "expres": "^0.0.5",
     "express": "^4.19.2",
+    "proshop2": "file:..",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",

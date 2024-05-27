@@ -408,7 +408,6 @@ const OrderScreen = () => {
               {!order.isPaid  && order.user._id === userInfo._id && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
-
                   <div>
                     <form action="/create-payment-link" method='post'>
                       <input type='hidden' name='orderId' value={order._id} />
